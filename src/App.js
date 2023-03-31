@@ -1,13 +1,38 @@
+import { useState } from "react";
+import data from './data';
+import {FiChevronLeft , FiChevronRight} from 'react-icons/fi'
 
 function App() {
+  const [people, setPeople] = useState(data);
+  const [index, setIndex] = useState(0);
+  console.log(people);
   return (
-    <div>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <div className="container">
-          تست
-        </div>
-      </nav>
-    </div>
+    <section className="section">
+      <div className="title">
+        <span>نطرات مشتریان</span>
+      </div>
+      <div className="section-center">
+        {
+          people.map((person , personIndex) =>{
+            const {id , image , name , qoute , title} = person;
+            return(
+              <article key={id}>
+                <img src={image} alt={name} className="person-img"/>
+                <h4>{name}</h4>
+                <p className="title">{title}</p>
+                <p className="qoute">{qoute}</p>
+              </article>
+            )
+          })
+        }
+        <button className="next">
+          <FiChevronRight/>
+        </button>
+        <button className="prev">
+          <FiChevronLeft/>
+        </button>
+      </div>
+    </section>
   );
 }
 
