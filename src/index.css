@@ -93,4 +93,14 @@ body {
   background: transparent;
   border: none;
 }
+article.activeSlide{
+  opacity: 1;
+  transform: translateX(0);
+}
+article.nextSlide{
+  transform: translateX(100%);
+}
+article.lastSlide{
+  transform: translateX(-100%);
+}
 
