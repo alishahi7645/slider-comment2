@@ -1,11 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import data from './data';
 import {FiChevronLeft , FiChevronRight} from 'react-icons/fi'
 
 function App() {
   const [people, setPeople] = useState(data);
   const [index, setIndex] = useState(0);
-  console.log(people);
+  useEffect(()=>{
+    let lastIndex = people.length -1;
+    if(index < 0){
+      setIndex(lastIndex);
+    }
+    if(index > lastIndex){
+      setIndex(0);
+    }
+  },[index,people])
+ 
+  console.log(index);
   return (
     <section className="section">
       <div className="title">
@@ -32,10 +42,10 @@ function App() {
             )
           })
         }
-        <button className="next">
+        <button className="next" onClick={()=>setIndex(index+1)}>
           <FiChevronRight/>
         </button>
-        <button className="prev">
+        <button className="prev" onClick={()=>setIndex(index-1)}>
           <FiChevronLeft/>
         </button>
       </div>
